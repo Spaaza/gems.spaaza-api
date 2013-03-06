@@ -3,6 +3,7 @@ module SpaazaApi
     include SpaazaApi::Analytics
     include SpaazaApi::Categories
     include SpaazaApi::Chains
+    include SpaazaApi::Facebook
     include SpaazaApi::Images
     include SpaazaApi::Inventory
     include SpaazaApi::Prices

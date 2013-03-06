@@ -120,3 +120,4 @@ The spaaza client provides convenience wrappers for the spaaza API method endpoi
 + analytics_get_member_conversions(business_id, chain_id, gender=nil, from_date=nil, to_date=nil, from_age=nil, to_age=nil)
 + analytics_get_purchase_conversions(business_id, chain_id, gender=nil, from_date=nil, to_date=nil, from_age=nil, to_age=nil)
 + analytics_get_unique_shoppers(business_id, chain_id, type, gender=nil, from_date=nil, to_date=nil, from_age=nil, to_age=nil)
++ fb_login(access_token, expires)
