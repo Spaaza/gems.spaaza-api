@@ -1,5 +1,12 @@
 module SpaazaApi
   module Prices
+    def get_prices_entity(business_id=nil, chain_id=nil) 
+      get 'internal/get-var-prices-entity.json', :query => {
+        :business_id => business_id, 
+        :chain_id => chain_id 
+      }
+    end
+
     def variable_get_variableprice_auth(product_id)
       get '/internal/get-var-price.json', :query => {:product_id => product_id }
     end

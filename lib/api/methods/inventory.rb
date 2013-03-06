@@ -1,6 +1,6 @@
 module SpaazaApi
   module Inventory
-    def create_new_inventory (business_id, product_id, inventory_condition, inventory_published_status, inventory_stock_status, inventory_size, inventory_colour, inventory_price)
+    def create_new_inventory(business_id, product_id, inventory_condition, inventory_published_status, inventory_stock_status, inventory_size, inventory_colour, inventory_price)
       post '/auth/add-inventory.json', :body => {
         :product_id => product_id,
         :business_id => business_id,      
@@ -13,7 +13,7 @@ module SpaazaApi
       }        
     end
 
-    def update_inventory_published_bulk (product_id, entity_type, entity_id, inventory_published_status )
+    def update_inventory_published_bulk(product_id, entity_type, entity_id, inventory_published_status )
       put '/auth/alter-inventory-published-status-bulk.json', :body => {
         :product_id => product_id,
         :inventory_published_status => inventory_published_status,
@@ -22,7 +22,7 @@ module SpaazaApi
       }
     end
 
-    def update_inventory (business_id, product_id, inventory_id, key, value)
+    def update_inventory(business_id, product_id, inventory_id, key, value)
       put '/auth/alter-inventory-published-status-bulk.json', :body => {
         key => value,
         :inventory_id => inventory_id,
@@ -30,11 +30,15 @@ module SpaazaApi
       }        
     end
 
-    def delete_inventory (business_id, inventory_id)
+    def delete_inventory(business_id, inventory_id)
       delete '/auth/delete-inventory.json', :body => {
         :inventory_id => inventory_id,
         :business_id => business_id
       }
     end
+
+    def get_product_inventory(product_id)
+      get '/public/search-inventory.json', :query => { :product_id => product_id }
+    end    
   end
 end

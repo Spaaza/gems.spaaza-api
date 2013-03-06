@@ -34,5 +34,24 @@ module SpaazaApi
           :search_gender => search_gender
         }
     end
+
+    def search_productslist_public(business_id='', chain_id='', category_id='', search_string='', search_colour='', search_brand='', search_gender='', search_adult_child='', search_lat='', search_long='', search_radius_km='', order_by='', results_offset='', number_results=nil, ssl_images='')
+        get '/public/search-products.json', :query => {
+          :business_id => business_id,
+          :chain_id => chain_id,
+          :category_id => category_id,
+          :search_string => search_string,
+          :search_colour => search_colour,
+          :search_gender => search_gender,
+          :search_brand => search_brand,
+          :search_adult_child => search_adult_child,
+          :search_lat => search_lat,
+          :search_long => search_long,
+          :search_radius_km => search_radius_km,
+          :order_by => order_by,
+          :number_results => results_offset,
+          :ssl_images => ssl_images
+        }
+    end    
   end
 end
