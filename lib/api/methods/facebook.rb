@@ -16,4 +16,3 @@ module SpaazaApi
     end
   end
 end
-login-fb.json
