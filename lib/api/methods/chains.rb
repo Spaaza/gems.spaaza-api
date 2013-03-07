@@ -1,5 +1,9 @@
 module SpaazaApi
   module Chains
+    def get_chain(chain_id)
+      get '/public/chain-info.json', :query => { :chain_id => chain_id }
+    end
+        
     def chain_get_productbusinesses_public(product_id, search_lat='', search_long='', search_radius_km='', results_offset='', number_results='')
         get '/public/search-businesses.json', :query => {
           :product_id => product_id,

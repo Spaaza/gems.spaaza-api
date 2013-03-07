@@ -62,7 +62,7 @@ Spaaza API Methods:
 The spaaza client provides convenience wrappers for the spaaza API method endpoints and parameters. 
 
 + user_get_userbusinesses_auth 
-+ user_get_chainbusinesses_public(chain_id)
++ user_get_chainbusinesses_public(chain_id, search_lat=nil, search_long=nil, search_radius_km=nil)
 + shop_get_shopinfo_public(business_id)
 + shop_get_chainshops_public(chain_id)
 + shop_get_searchproductsautocomplete_public(search_str, type, business_id)
@@ -70,6 +70,7 @@ The spaaza client provides convenience wrappers for the spaaza API method endpoi
 + shop_get_businessproductslist_public(shop_id, order_by, results_offset=0, published_status=nil, search_string=nil, category_id=nil, search_gender=nil, search_colour=nil)
 + shop_get_businessproducts_auth(business, order_by='name', total_products=20, results_offset=0, published_status=nil, search_string=nil, category_id=nil, search_gender=nil, search_colour=nil)
 + shop_get_productsforbusiness_auth(business, order_by, total_products=20, results_offset=0, published_status=nil, search_string=nil, category_id=nil, search_gender=nil, search_colour=nil)
++ get_short_code_info(entity_short_code)
 + login(username, password)
 + logout
 + get_login_status(name=nil, key=nil)
@@ -107,6 +108,7 @@ The spaaza client provides convenience wrappers for the spaaza API method endpoi
 + add_product_image(product_id, image, image_seq_num)
 + delete_shop_image(business_id, image)
 + add_shop_image(business_id, image)
++ get_chain(chain_id)
 + chain_get_productbusinesses_public(product_id, search_lat='', search_long='', search_radius_km='', results_offset='', number_results='')
 + chain_get_chainproductslist_auth(chain_id, order_by, results_offset=0, published_status='', search_string='', category_id='', search_gender='', search_colour='')
 + chain_get_chainproductslist_public(chain_id, order_by, results_offset=0, published_status='', search_string='', category_id='', search_gender='', search_colour='')

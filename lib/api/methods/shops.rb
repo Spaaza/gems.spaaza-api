@@ -69,5 +69,9 @@ module SpaazaApi
         :search_gender => search_gender
       }
     end
+
+    def get_short_code_info(entity_short_code)
+      get '/public/get-entity-short-code-info.json', :query => { :entity_short_code => entity_short_code }
+    end
   end
 end
