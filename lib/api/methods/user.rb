@@ -11,7 +11,7 @@ module SpaazaApi
     def user_signup(first_name, email, password, last_name=nil, gender=nil, birthday=nil)
       post '/internal/signup.json', :body => {
         :first_name => first_name,
-        :email => email,
+        :username => email,
         :password => password,
         :last_name => last_name,
         :gender => gender,
