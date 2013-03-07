@@ -24,5 +24,9 @@ module SpaazaApi
         :birthday => birthday
       }  
     end
+
+    def user_verify(verification_key)
+      post '/internal/signup.json', :body => { :verification_key => verification_key }
+    end
   end
 end

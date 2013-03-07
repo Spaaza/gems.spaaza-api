@@ -56,7 +56,7 @@ module SpaazaApi
       body = api_params args, :body
 
       if @debug && defined?(Rails)
-        Rails.logger.debug "SPAAZA API Client : #{method} #{url} : username=#{username}, session_key=#{session_key} : query=#{query.inspect} : body=#{body.inspect}" 
+        Rails.logger.debug "SPAAZA API Client : #{method} #{url} : username=#{username}, session_key=#{session_key}, auth=#{session_auth_method} : query=#{query.inspect} : body=#{body.inspect}" 
       end
 
       res = http.request method, uri, query, body, header
