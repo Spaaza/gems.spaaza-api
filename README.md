@@ -28,6 +28,8 @@ The client is authorized through the given `username` and `session_key`, althoug
 
     SpaazaApi::Client.new(:host => some_host).chain_get_productbusinesses_public some_product_id
 
+Setting the `username` authorizes the API call both with username- and user_id-based API session headers.
+
 Response:
 =========
 

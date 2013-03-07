@@ -14,7 +14,7 @@ module SpaazaApi
     include SpaazaApi::Shops
     include SpaazaApi::User
 
-    attr_reader :username, :session_key, :http, :host, :session_auth_method
+    attr_reader :username, :session_key, :http, :host
 
     def initialize(opts)
       @http = HTTPClient.new
@@ -22,7 +22,6 @@ module SpaazaApi
       @username = opts[:username]
       @session_key = opts[:session_key]
       @debug = opts[:debug] || false
-      @session_auth_method = opts[:session_auth_method]
 
       raise(ArgumentError, "host required") unless host
     end
@@ -49,14 +48,13 @@ module SpaazaApi
 
     def request(method, url, args={})
       uri = host + url
-      header = {'session_username' => username, 'session_key' => session_key }
-      header['session_auth_method'] = session_auth_method if session_auth_method
+      header = {'session_username' => username, 'session_key' => session_key, 'session_user_id' => username }
       
       query = api_params args, :query
       body = api_params args, :body
 
       if @debug && defined?(Rails)
-        Rails.logger.debug "SPAAZA API Client : #{method} #{url} : username=#{username}, session_key=#{session_key}, auth=#{session_auth_method} : query=#{query.inspect} : body=#{body.inspect}" 
+        Rails.logger.debug "SPAAZA API Client : #{method} #{url} : headers=#{header.inspect} : query=#{query.inspect} : body=#{body.inspect}" 
       end
 
       res = http.request method, uri, query, body, header
