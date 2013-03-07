@@ -109,5 +109,6 @@ module SpaazaApi
       delete '/internal/delete-var-price-claim.json', :body => {
         :claim_id => claim_id
       }
+    end
   end
 end
