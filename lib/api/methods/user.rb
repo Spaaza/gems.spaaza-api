@@ -6,7 +6,7 @@ module SpaazaApi
 
     def user_get_chainbusinesses_public(chain_id, search_lat=nil, search_long=nil, search_radius_km=nil)
       get '/public/chain-businesses.json', :query=> {
-        :chain_id => chain_id
+        :chain_id => chain_id,
         :search_lat => search_lat,
         :search_long => search_long,
         :search_radius_km => search_radius_km
