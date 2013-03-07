@@ -131,7 +131,7 @@ The spaaza client provides convenience wrappers for the spaaza API method endpoi
 + fb_login_status(user_id, session_key)
 + make_claim(claim_code)
 + get_var_price_claim(claim_code)
-+ user_signup(first_name, email, password, last_name=nil, gender=nil, birthday=nil)
++ user_signup(first_name, email, password, verification_url, last_name=nil, gender=nil, birthday=nil)
 + get_cards(user_id, include_expired=nil, voucher_status=nil, search_lat=nil, search_long=nil, search_radius_km=nil, results_offset=nil, number_results=nil, ssl_images=nil, chain_id=nil, business_id=nil)
 + add_card(user_id, business_id=nil, chain_id=nil)
 + delete_card(business_id = nil, chain_id = nil)
