@@ -127,3 +127,4 @@ The spaaza client provides convenience wrappers for the spaaza API method endpoi
 + fb_login_status(user_id, session_key)
 + make_claim(claim_code)
 + get_var_price_claim(claim_code)
++ user_signup(first_name, email, password, last_name=nil, gender=nil, birthday=nil)
