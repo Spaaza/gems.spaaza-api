@@ -44,11 +44,22 @@ module SpaazaApi
 
     def delete(url, args={}) 
       request 'delete', url, args
-    end        
+    end
+
+    def request_headers
+      headers = {'session_key' => session_key}
+      
+      if username && username.include?('@')
+        headers['session_username'] = username
+      else
+        headers['session_user_id'] = username
+      end
+      headers
+    end
 
     def request(method, url, args={})
       uri = host + url
-      header = {'session_username' => username, 'session_key' => session_key, 'session_user_id' => username }
+      header = request_headers
       
       query = api_params args, :query
       body = api_params args, :body
