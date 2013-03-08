@@ -75,7 +75,7 @@ The spaaza client provides convenience wrappers for the spaaza API method endpoi
 + get_short_code_info(entity_short_code)
 + login(username, password)
 + logout
-+ get_login_status(name=nil, key=nil)
++ get_login_status(user_id=nil, name=nil, key=nil)
 + get_reservation(reservation_id)
 + update_reservation(reservation_id, status)
 + get_product_by_owner_code(owner_code)
@@ -130,7 +130,6 @@ The spaaza client provides convenience wrappers for the spaaza API method endpoi
 + analytics_get_purchase_conversions(business_id, chain_id, gender=nil, from_date=nil, to_date=nil, from_age=nil, to_age=nil)
 + analytics_get_unique_shoppers(business_id, chain_id, type, gender=nil, from_date=nil, to_date=nil, from_age=nil, to_age=nil)
 + fb_login(access_token, expires)
-+ fb_login_status(user_id, session_key)
 + make_claim(claim_code)
 + get_var_price_claim(claim_code)
 + user_signup(first_name, email, password, verification_url, last_name=nil, gender=nil, birthday=nil)

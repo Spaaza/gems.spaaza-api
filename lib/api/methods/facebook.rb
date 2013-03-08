@@ -5,13 +5,6 @@ module SpaazaApi
         :fb_access_token => access_token,
         :fb_access_token_expires => expires
       }
-    end    
-
-    def fb_login_status(user_id, session_key)
-      get '/internal/get-login-status-fb.json', :query => {
-        :user_id => user_id,
-        :session_key => session_key
-      }
-    end
+    end 
   end
 end

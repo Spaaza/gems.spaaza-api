@@ -11,8 +11,9 @@ module SpaazaApi
       delete "/logout.json"
     end    
 
-    def get_login_status(name=nil, key=nil)
+    def get_login_status(user_id=nil, name=nil, key=nil)
       get "/auth/get-login-status.json", :query => {
+        :user_id => user_id,
         :username => name || username, 
         :session_key => key || session_key
       }
