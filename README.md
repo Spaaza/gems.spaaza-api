@@ -75,7 +75,7 @@ The spaaza client provides convenience wrappers for the spaaza API method endpoi
 + get_short_code_info(entity_short_code)
 + login(username, password)
 + logout
-+ get_login_status(user_id=nil, name=nil, key=nil)
++ get_login_status(user_id=nil, key=nil)
 + get_reservation(reservation_id)
 + update_reservation(reservation_id, status)
 + get_product_by_owner_code(owner_code)

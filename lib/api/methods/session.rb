@@ -1,8 +1,8 @@
 module SpaazaApi
   module Session
-    def login(username, password)
+    def login(name, password)
       post "/auth/login.json", :body => {
-        :username => username, 
+        :username => name, 
         :password => password
       }
     end
@@ -11,12 +11,17 @@ module SpaazaApi
       delete "/logout.json"
     end    
 
-    def get_login_status(user_id=nil, name=nil, key=nil)
-      get "/auth/get-login-status.json", :query => {
-        :user_id => user_id,
-        :username => name || username, 
-        :session_key => key || session_key
-      }
+    def get_login_status(user_id=nil, key=nil)
+      params = { :session_key => key || session_key }
+      uid = user_id.blank? ? username : user_id
+
+      if uid.include?('@')
+        params[:username] = uid
+      else
+        params[:user_id] = uid
+      end
+
+      get "/auth/get-login-status.json", :query => params
     end
   end
 end
