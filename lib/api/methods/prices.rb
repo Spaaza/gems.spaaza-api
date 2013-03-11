@@ -16,7 +16,7 @@ module SpaazaApi
     end
 
     def get_prices_entity(business_id=nil, chain_id=nil) 
-      get 'internal/get-var-prices-entity.json', :query => {
+      get '/internal/get-var-prices-entity.json', :query => {
         :business_id => business_id, 
         :chain_id => chain_id 
       }
