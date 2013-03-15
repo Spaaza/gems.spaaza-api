@@ -14,7 +14,7 @@ module SpaazaApi
     include SpaazaApi::Shops
     include SpaazaApi::User
 
-    attr_reader :username, :session_key, :http, :host
+    attr_reader :username, :session_key, :http, :host, :myprice_app_hostname
 
     def initialize(opts)
       @http = HTTPClient.new
@@ -26,6 +26,10 @@ module SpaazaApi
       raise(ArgumentError, "host required") unless host
     end
 
+    def set_myprice_app_hostname(hostname)
+      @myprice_app_hostname = hostname
+    end
+    
     def authenticated?
       username && session_key ? true : false
     end
@@ -54,6 +58,11 @@ module SpaazaApi
       else
         headers['session_user_id'] = username
       end
+
+      if @myprice_app_hostname.present?
+        headers['X-MyPrice-App-Hostname'] = @myprice_app_hostname
+      end
+      
       headers
     end
 
