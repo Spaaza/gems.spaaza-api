@@ -14,7 +14,8 @@ module SpaazaApi
     end
 
     def user_signup(first_name, email, password, verification_url, last_name=nil, gender=nil, birthday=nil)
-      post '/internal/signup.json', :body => {
+      require_protected_path
+      post "/#{protected_path}/signup.json", :body => {
         :first_name => first_name,
         :username => email,
         :password => password,
@@ -26,7 +27,8 @@ module SpaazaApi
     end
 
     def user_verify(verification_key)
-      post '/internal/signup.json', :body => { :verification_key => verification_key }
+      require_protected_path
+      post "/#{protected_path}/signup.json", :body => { :verification_key => verification_key }
     end
   end
 end

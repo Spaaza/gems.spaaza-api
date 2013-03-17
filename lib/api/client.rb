@@ -14,7 +14,7 @@ module SpaazaApi
     include SpaazaApi::Shops
     include SpaazaApi::User
 
-    attr_reader :username, :session_key, :http, :host, :myprice_app_hostname
+    attr_reader :username, :session_key, :http, :host, :protected_path, :myprice_app_hostname
 
     def initialize(opts)
       @http = HTTPClient.new
@@ -22,6 +22,7 @@ module SpaazaApi
       @username = opts[:username]
       @session_key = opts[:session_key]
       @debug = opts[:debug] || false
+      @protected_path = ''
 
       raise(ArgumentError, "host required") unless host
     end
@@ -88,5 +89,11 @@ module SpaazaApi
     def api_params(hash, key)
       (hash[key] || {}).reject { |k, v| !v }
     end
+
+    private
+
+      def require_protected_path
+        raise "Protected path is required for the client to query that endpoint" if protected_path.blank?
+      end
   end
 end

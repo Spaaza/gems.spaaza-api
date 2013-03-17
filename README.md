@@ -58,6 +58,16 @@ An explicit error in the request, for any reason from http exceptions to spaaza 
 
     puts res.error if res.error? => 'some error message'
 
+Protected API Methods:
+==================
+
+In order to use protected Spaaza API methods you need to supply a `protected_path` option to the client:
+
+    es = SpaazaApi::Client.new :host => 'https://apidev0.spaaza.com/t_002'
+                               :protected_path => '/my/internal/methods'
+
+Calling a protected method without supplying a valid `protected_path` will raise an exception.
+
 Spaaza API Methods:
 ==================
 
