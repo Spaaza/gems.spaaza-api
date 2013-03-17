@@ -22,7 +22,7 @@ module SpaazaApi
       @username = opts[:username]
       @session_key = opts[:session_key]
       @debug = opts[:debug] || false
-      @protected_path = ''
+      @protected_path = opts[:protected_path]
 
       raise(ArgumentError, "host required") unless host
     end
