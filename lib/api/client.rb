@@ -53,8 +53,8 @@ module SpaazaApi
 
     def request_headers
       headers = {'session_key' => session_key}
-      
-      if username && username.is_a?(String) && username.include?('@')
+
+      if username_string?(username)
         headers['session_username'] = username
       else
         headers['session_user_id'] = username
@@ -88,6 +88,10 @@ module SpaazaApi
 
     def api_params(hash, key)
       (hash[key] || {}).reject { |k, v| !v }
+    end
+
+    def username_string?(string)
+      string && string.is_a?(String) && string.include?('@') ? true : false
     end
 
     private

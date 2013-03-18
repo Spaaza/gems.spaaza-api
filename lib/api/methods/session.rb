@@ -15,7 +15,7 @@ module SpaazaApi
       params = { :session_key => key || session_key }
       uid = user_id.blank? ? username : user_id
 
-      if uid.include?('@')
+      if username_string?(uid)
         params[:username] = uid
       else
         params[:user_id] = uid
