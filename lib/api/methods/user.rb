@@ -1,7 +1,12 @@
 module SpaazaApi
   module User
     def user_get_userbusinesses_auth
-      get '/auth/get-user-permissions.json', :query => {:user_username => username}
+      if username_string?(username)
+        query = {:user_username => username}
+      else
+        query = {:user_id => username}
+      end
+      get '/auth/get-user-permissions.json', :query => query
     end
 
     def user_get_chainbusinesses_public(chain_id, search_lat=nil, search_long=nil, search_radius_km=nil)
