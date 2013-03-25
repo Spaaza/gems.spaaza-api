@@ -14,4 +14,5 @@ module SpaazaApi
         :signed_request => signed_request
       }
     end
+  end
 end
