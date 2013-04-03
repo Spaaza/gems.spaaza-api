@@ -52,12 +52,12 @@ module SpaazaApi
     end
 
     def request_headers
-      headers = {'session_key' => session_key}
+      headers = {'Session-key' => session_key}
 
       if username_string?(username)
-        headers['session_username'] = username
+        headers['Session-Username'] = username
       else
-        headers['session_user_id'] = username
+        headers['Session-User-Id'] = username
       end
 
       if @myprice_app_hostname.present?
