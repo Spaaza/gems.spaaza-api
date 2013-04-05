@@ -64,6 +64,17 @@ module SpaazaApi
         headers['X-MyPrice-App-Hostname'] = @myprice_app_hostname
       end
       
+      rq = {}
+      unless ENV['HTTP_USER_AGENT'].nil?
+        rq['user_agent'] = ENV['HTTP_USER_AGENT']
+      end
+      if request.env["HTTP_X_FORWARDED_FOR"].nil?
+        rq['ip'] = request.remote_ip
+      else
+        rq['ip'] = request.env["HTTP_X_FORWARDED_FOR"]
+      end
+      headers['X-Spaaza-Request'] = rq.to_json
+      
       headers
     end
 
