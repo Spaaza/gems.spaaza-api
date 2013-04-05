@@ -64,9 +64,9 @@ module SpaazaApi
         headers['X-MyPrice-App-Hostname'] = @myprice_app_hostname
       end
       
-      rq = {}
-      unless ENV['HTTP_USER_AGENT'].nil?
-        rq['user_agent'] = ENV['HTTP_USER_AGENT']
+      rq = {'language' => best_language}
+      unless request.env['HTTP_USER_AGENT'].nil?
+        rq['user_agent'] = request.env['HTTP_USER_AGENT']
       end
       if request.env["HTTP_X_FORWARDED_FOR"].nil?
         rq['ip'] = request.remote_ip
@@ -110,5 +110,31 @@ module SpaazaApi
       def require_protected_path
         raise "Protected path is required for the client to query that endpoint" if protected_path.blank?
       end
+
+      # Returns the languages accepted by the visitors, sorted by quality
+      # (order of preference).
+      # http://mashing-it-up.blogspot.nl/2008/10/parsing-accept-language-in-rails.html
+      def best_language()
+        # no language accepted
+        return nil if request.env["HTTP_ACCEPT_LANGUAGE"].nil?
+        
+        # parse Accept-Language
+        accepted = request.env["HTTP_ACCEPT_LANGUAGE"].split(",")
+        accepted = accepted.map { |l| l.strip.split(";") }
+        accepted = accepted.map { |l|
+          if (l.size == 2)
+            # quality present
+            [ l[0].split("-")[0].downcase, l[1].sub(/^q=/, "").to_f ]
+          else
+            # no quality specified =&gt; quality == 1
+            [ l[0].split("-")[0].downcase, 1.0 ]
+          end
+        }
+        
+        # sort by quality
+        accepted.sort { |l1, l2| l1[1] <=> l2[1] }
+        accepted[0][0]
+      end
+      
   end
 end
