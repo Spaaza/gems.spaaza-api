@@ -1,3 +1,6 @@
+require 'logger'
+
+
 module SpaazaApi
   class Client
     include SpaazaApi::Analytics
@@ -23,7 +26,8 @@ module SpaazaApi
       @session_key = opts[:session_key]
       @debug = opts[:debug] || false
       @protected_path = opts[:protected_path]
-
+      @logger = Logger.new(STDOUT)
+      @client_request = opts[:request]
       raise(ArgumentError, "host required") unless host
     end
 
@@ -63,17 +67,19 @@ module SpaazaApi
       if @myprice_app_hostname.present?
         headers['X-MyPrice-App-Hostname'] = @myprice_app_hostname
       end
-      
-      rq = {'language' => best_language}
-      unless request.env['HTTP_USER_AGENT'].nil?
-        rq['user_agent'] = request.env['HTTP_USER_AGENT']
+
+      unless @client_request.nil?
+        rq = {'language' => best_language}
+        unless @client_request.env['HTTP_USER_AGENT'].nil?
+          rq['user_agent'] = @client_request.env['HTTP_USER_AGENT']
+        end
+        if @client_request.env["HTTP_X_FORWARDED_FOR"].nil?
+          rq['ip'] = @client_request.remote_ip
+        else
+          rq['ip'] = @client_request.env["HTTP_X_FORWARDED_FOR"]
+        end
+        headers['X-Spaaza-Request'] = rq.to_json
       end
-      if request.env["HTTP_X_FORWARDED_FOR"].nil?
-        rq['ip'] = request.remote_ip
-      else
-        rq['ip'] = request.env["HTTP_X_FORWARDED_FOR"]
-      end
-      headers['X-Spaaza-Request'] = rq.to_json
       
       headers
     end
@@ -116,10 +122,9 @@ module SpaazaApi
       # http://mashing-it-up.blogspot.nl/2008/10/parsing-accept-language-in-rails.html
       def best_language()
         # no language accepted
-        return nil if request.env["HTTP_ACCEPT_LANGUAGE"].nil?
-        
+        return nil if @client_request.env["HTTP_ACCEPT_LANGUAGE"].nil?
         # parse Accept-Language
-        accepted = request.env["HTTP_ACCEPT_LANGUAGE"].split(",")
+        accepted = @client_request.env["HTTP_ACCEPT_LANGUAGE"].split(",")
         accepted = accepted.map { |l| l.strip.split(";") }
         accepted = accepted.map { |l|
           if (l.size == 2)
