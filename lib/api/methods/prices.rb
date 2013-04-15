@@ -17,6 +17,11 @@ module SpaazaApi
       }
     end
 
+    def get_var_price_product_info(product_id)
+      require_protected_path
+      get "#{protected_path}/get-var-price-product-info.json", :query => {:product_id => product_id }
+    end
+
     def get_prices_entity(business_id=nil, chain_id=nil) 
       require_protected_path
       get "#{protected_path}/get-var-prices-entity.json", :query => {
