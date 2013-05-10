@@ -79,8 +79,12 @@ module SpaazaApi
           rq['ip'] = @client_request.env["HTTP_X_FORWARDED_FOR"]
         end
         headers['X-Spaaza-Request'] = rq.to_json
+
+        unless @client_request.cookies["global_myprice"].blank?
+          headers['X-Spaaza-UserCookie'] = @client_request.cookies["global_myprice"]
+        end
       end
-      
+
       headers
     end
 
