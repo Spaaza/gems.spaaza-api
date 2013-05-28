@@ -17,7 +17,7 @@ module SpaazaApi
     include SpaazaApi::Shops
     include SpaazaApi::User
 
-    attr_reader :username, :session_key, :http, :host, :protected_path, :myprice_app_hostname
+    attr_reader :username, :session_key, :http, :host, :protected_path, :myprice_app_hostname, :usercookie
 
     def initialize(opts)
       @http = HTTPClient.new
@@ -26,8 +26,9 @@ module SpaazaApi
       @session_key = opts[:session_key]
       @debug = opts[:debug] || false
       @protected_path = opts[:protected_path]
-      @logger = Logger.new(STDOUT)
+      @usercookie = opts[:usercookie]
       @client_request = opts[:request]
+      @logger = Logger.new(STDOUT)
       raise(ArgumentError, "host required") unless host
     end
 
@@ -80,8 +81,9 @@ module SpaazaApi
         end
         headers['X-Spaaza-Request'] = rq.to_json
 
-        unless @client_request.cookies["global_myprice"].blank?
-          headers['X-Spaaza-UserCookie'] = @client_request.cookies["global_myprice"]
+        unless @usercookie.blank?
+          Rails.logger.debug "SPAAZA API Client usercookie: #{usercookie}"
+          headers['X-Spaaza-UserCookie'] = @usercookie
         end
       end
 
