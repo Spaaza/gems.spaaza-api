@@ -74,11 +74,9 @@ module SpaazaApi
         unless @client_request.env['HTTP_USER_AGENT'].nil?
           rq['user_agent'] = @client_request.env['HTTP_USER_AGENT']
         end
-        if @client_request.env["HTTP_X_FORWARDED_FOR"].nil?
-          rq['ip'] = @client_request.remote_ip
-        else
-          rq['ip'] = @client_request.env["HTTP_X_FORWARDED_FOR"]
-        end
+
+        rq['ip'] = @client_request.remote_ip
+
         headers['X-Spaaza-Request'] = rq.to_json
 
         unless @usercookie.blank?
