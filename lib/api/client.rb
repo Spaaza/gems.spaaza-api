@@ -75,7 +75,10 @@ module SpaazaApi
           rq['user_agent'] = @client_request.env['HTTP_USER_AGENT']
         end
 
-        rq['ip'] = @client_request.remote_ip
+        ip = @client_request.remote_ip
+        unless ip.blank? or ip == "unknown"
+          rq['ip'] = ip
+        end
 
         headers['X-Spaaza-Request'] = rq.to_json
 
