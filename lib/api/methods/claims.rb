@@ -14,5 +14,10 @@ module SpaazaApi
         :claim_view_type => 'retailer'
       }
     end
+
+    def get_var_price_vouchers_user()
+      require_protected_path
+      get "#{protected_path}/get-var-price-vouchers-user.json"
+    end
   end
 end
