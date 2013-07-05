@@ -2,7 +2,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name = "spaaza-api"
-  s.version = "1.8.6"
+  s.version = "1.8.7"
   s.platform     = Gem::Platform::RUBY  
   s.summary      = "SPAAZA eCommerce API"
   s.description  = "Ruby API for the SPAAZA MyPrice, ProductFinder, and Venster platforms"
