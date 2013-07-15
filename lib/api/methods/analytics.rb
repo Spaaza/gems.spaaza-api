@@ -12,7 +12,7 @@ module SpaazaApi
       }
     end
 
-    def analytics_get_basket_stats(business_id, chain_id, gender=nil, from_date=nil, to_date=nil, from_age=nil, to_age=nil)
+    def analytics_get_basket_stats(business_id, chain_id, gender=nil, from_date=nil, to_date=nil, from_age=nil, to_age=nil, interval=nil)
       get '/auth/analytics/get-basket-stats.json', :query => {
         :business_id => business_id,
         :chain_id => chain_id,
@@ -20,11 +20,12 @@ module SpaazaApi
         :from_date => from_date,
         :to_date => to_date,
         :from_age => from_age,
-        :to_age => to_age
+        :to_age => to_age,
+        :interval => interval
       }
     end
 
-    def analytics_get_event_analytics(business_id, chain_id, index, type, gender=nil, from_date=nil, to_date=nil, from_age=nil, to_age=nil)
+    def analytics_get_event_analytics(business_id, chain_id, index, type, gender=nil, from_date=nil, to_date=nil, from_age=nil, to_age=nil, interval=nil)
       get '/auth/analytics/get-event-analytics.json', :query => {
         :business_id => business_id,
         :chain_id => chain_id,
@@ -34,7 +35,8 @@ module SpaazaApi
         :to_date => to_date,
         :from_age => from_age,
         :to_age => to_age,
-        :type => type
+        :type => type,
+        :interval => interval
       }
     end   
 
@@ -83,7 +85,7 @@ module SpaazaApi
       }
     end     
 
-    def analytics_get_user_registrations(business_id, chain_id, gender=nil, from_date=nil, to_date=nil, from_age=nil, to_age=nil)
+    def analytics_get_user_registrations(business_id, chain_id, gender=nil, from_date=nil, to_date=nil, from_age=nil, to_age=nil, interval=nil)
       get '/auth/analytics/get-user-registrations.json', :query => {
         :business_id => business_id,
         :chain_id => chain_id,
@@ -91,7 +93,8 @@ module SpaazaApi
         :from_date => from_date,
         :to_date => to_date,
         :from_age => from_age,
-        :to_age => to_age
+        :to_age => to_age,
+        :interval => interval
       }
     end
 
