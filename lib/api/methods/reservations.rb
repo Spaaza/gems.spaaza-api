@@ -1,7 +1,8 @@
 module SpaazaApi
   module Reservations
     def get_reservation(reservation_id)
-      res = get '/auth/get-inventory-reservation-info.json', :query => {
+      #res = get '/auth/get-inventory-reservation-info.json', :query => {
+      get '/auth/get-inventory-reservation-info.json', :query => {
         :inventory_reservation_id => reservation_id, 
         :ssl_images => true
       }
