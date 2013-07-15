@@ -5,7 +5,7 @@ module SpaazaApi
         :inventory_reservation_id => reservation_id, 
         :ssl_images => true
       }
-      res.data && res.data['inventory_reservation']
+      #res.data && res.data['inventory_reservation']
     end
   
     def update_reservation(reservation_id, status)
