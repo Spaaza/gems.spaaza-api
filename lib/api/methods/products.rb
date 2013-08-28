@@ -19,7 +19,7 @@ module SpaazaApi
     end
 
     def product_get_allproducts_public(category_id, search_string, search_colour, search_brand, search_gender, search_adult_child, search_lat, search_long, search_radius_km, order_by)
-      get 'public/search-products.json', :query => {
+      get '/public/search-products.json', :query => {
         :category_id => category_id,
         :search_string => search_string,
         :search_colour => search_colour,
@@ -49,7 +49,7 @@ module SpaazaApi
     end
 
     def product_get_productinventory_public(entity_type, entity_id, product_id, category_id, search_string, search_colour, search_size, search_lat, search_long, search_radius_km, order_by, results_offset, number_results)
-      get 'public/search-inventory.json', :query => {
+      get '/public/search-inventory.json', :query => {
         :product_id => product_id,
         :business_id => entity_type == "business" ? entity_id : nil,
         :chain_id => entity_type != "business" ? entity_id : nil,
