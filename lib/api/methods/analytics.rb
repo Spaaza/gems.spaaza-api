@@ -134,5 +134,19 @@ module SpaazaApi
         :type => type
       }
     end    
+
+    def analytics_get_unique_shoppers_types(business_id, chain_id, type, gender=nil, from_date=nil, to_date=nil, from_age=nil, to_age=nil)
+      get '/auth/analytics/get-unique-shoppers.json', :query => {
+        :business_id => business_id,
+        :chain_id => chain_id,
+        :gender => gender,
+        :from_date => from_date,
+        :to_date => to_date,
+        :from_age => from_age,
+        :to_age => to_age
+      }
+    end    
+
   end
+
 end
