@@ -19,9 +19,14 @@ module SpaazaApi
       get "#{protected_path}/get-var-price-user.json", :query => query
     end
 
-    def get_var_price_product_info(product_id)
+    def get_var_price_product_info(product_id, inventory_owner_code=nil)
       require_protected_path
-      get "#{protected_path}/get-var-price-product-info.json", :query => {:product_id => product_id }
+      if inventory_owner_code.blank?
+        query = {:product_id => product_id}
+      else
+        query = {:inventory_owner_code => inventory_owner_code}
+      end
+      get "#{protected_path}/get-var-price-product-info.json", :query => query
     end
 
     def get_prices_entity(business_id=nil, chain_id=nil) 
