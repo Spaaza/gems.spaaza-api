@@ -9,7 +9,7 @@ module SpaazaApi
       }
     end
 
-    def get_price(product_id, inventory_owner_code, claim_key)
+    def get_price(product_id, claim_key=nil, inventory_owner_code=nil)
       require_protected_path
       if inventory_owner_code.blank?
         query = {:product_id => product_id, :claim_key => claim_key}
