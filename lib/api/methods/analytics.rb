@@ -147,6 +147,33 @@ module SpaazaApi
       }
     end    
 
+    def analytics_get_unique_baskets_new_returning(business_id, chain_id, gender=nil, from_date=nil, to_date=nil, from_age=nil, to_age=nil, interval=nil)
+      get '/auth/analytics/get-unique-baskets-new-returning.json', :query => {
+        :business_id => business_id,
+        :chain_id => chain_id,
+        :gender => gender,
+        :from_date => from_date,
+        :to_date => to_date,
+        :from_age => from_age,
+        :to_age => to_age,
+        :interval => interval
+      }
+    end    
+
+    def analytics_get_new_returning_users(business_id, chain_id, gender=nil, from_date=nil, to_date=nil, from_age=nil, to_age=nil, type=nil)
+      get '/auth/analytics/get-new-returning-users.json', :query => {
+        :business_id => business_id,
+        :chain_id => chain_id,
+        :gender => gender,
+        :from_date => from_date,
+        :to_date => to_date,
+        :from_age => from_age,
+        :to_age => to_age,
+        :type => type
+      }
+    end    
+
+
   end
 
 end
