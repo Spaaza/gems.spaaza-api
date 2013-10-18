@@ -35,5 +35,9 @@ module SpaazaApi
       require_protected_path
       post "#{protected_path}/user-verify.json", :body => { :verification_key => verification_key }
     end
+
+    def user_add_location(lng, lat, alt=nil, acc=nil, source=nil)
+      post "/auth/add-user-location.json", :body => { :lng => lng, :lat => lat, :alt => alt, :accuracy => acc, :source => source }
+    end
   end
 end
