@@ -78,11 +78,14 @@ module SpaazaApi
       }
     end
 
-    def add_scan(product_id)
+    def add_scan(product_id, inventory_owner_code=nil)
       require_protected_path
-      post "#{protected_path}/add-var-price-scan.json", :body => {
-        :product_id => product_id
-      }
+      if inventory_owner_code.blank?
+        body = {:product_id => product_id}
+      else
+        body = {:inventory_owner_code => inventory_owner_code}
+      end
+      post "#{protected_path}/add-var-price-scan.json", :body => body
     end
 
     def get_claim(claim_code, claim_view_type)
