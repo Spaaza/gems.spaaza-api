@@ -9,22 +9,24 @@ module SpaazaApi
       }
     end
 
-    def get_price(product_id, claim_key=nil, inventory_owner_code=nil)
+    def get_price(product_id, claim_key=nil, inventory_owner_code=nil, entity=nil)
       require_protected_path
       if inventory_owner_code.blank?
         query = {:product_id => product_id, :claim_key => claim_key}
       else
         query = {:inventory_owner_code => inventory_owner_code, :claim_key => claim_key}
+        query[(entity[:type]+"_id").to_sym] = entity[:id]
       end
       get "#{protected_path}/get-var-price-user.json", :query => query
     end
 
-    def get_var_price_product_info(product_id, inventory_owner_code=nil)
+    def get_var_price_product_info(product_id, inventory_owner_code=nil, entity=nil)
       require_protected_path
       if inventory_owner_code.blank?
         query = {:product_id => product_id}
       else
         query = {:inventory_owner_code => inventory_owner_code}
+        query[(entity[:type]+"_id").to_sym] = entity[:id]
       end
       get "#{protected_path}/get-var-price-product-info.json", :query => query
     end
@@ -78,12 +80,13 @@ module SpaazaApi
       }
     end
 
-    def add_scan(product_id, inventory_owner_code=nil)
+    def add_scan(product_id, inventory_owner_code=nil, entity=nil)
       require_protected_path
       if inventory_owner_code.blank?
         body = {:product_id => product_id}
       else
         body = {:inventory_owner_code => inventory_owner_code}
+        body[(entity[:type]+"_id").to_sym] = entity[:id]
       end
       post "#{protected_path}/add-var-price-scan.json", :body => body
     end
