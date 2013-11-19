@@ -20,12 +20,12 @@ module SpaazaApi
       get "#{protected_path}/get-var-price-user.json", :query => query
     end
 
-    def get_var_price_product_info(product_id, inventory_owner_code=nil, entity=nil)
+    def get_var_price_product_info(product_id, inventory_barcode=nil, entity=nil)
       require_protected_path
-      if inventory_owner_code.blank?
+      if inventory_barcode.blank?
         query = {:product_id => product_id}
       else
-        query = {:inventory_owner_code => inventory_owner_code}
+        query = {:inventory_barcode => inventory_barcode}
         query[(entity[:type]+"_id").to_sym] = entity[:id]
       end
       get "#{protected_path}/get-var-price-product-info.json", :query => query
