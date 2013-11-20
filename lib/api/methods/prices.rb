@@ -80,12 +80,12 @@ module SpaazaApi
       }
     end
 
-    def add_scan(product_id, inventory_owner_code=nil, entity=nil)
+    def add_scan(product_id, inventory_barcode=nil, entity=nil)
       require_protected_path
-      if inventory_owner_code.blank?
+      if inventory_barcode.blank?
         body = {:product_id => product_id}
       else
-        body = {:inventory_owner_code => inventory_owner_code}
+        body = {:inventorybarcode => inventorybarcode}
         body[(entity[:type]+"_id").to_sym] = entity[:id]
       end
       post "#{protected_path}/add-var-price-scan.json", :body => body
