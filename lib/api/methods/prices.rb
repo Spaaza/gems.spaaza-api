@@ -85,7 +85,7 @@ module SpaazaApi
       if inventory_barcode.blank?
         body = {:product_id => product_id}
       else
-        body = {:inventory_barcode => inventorybarcode}
+        body = {:inventory_barcode => inventory_barcode}
         body[(entity[:type]+"_id").to_sym] = entity[:id]
       end
       post "#{protected_path}/add-var-price-scan.json", :body => body
