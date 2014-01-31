@@ -20,11 +20,12 @@ module SpaazaApi
       }
     end
 
-    def add_product_image(product_id, image, image_seq_num)
+    def add_product_image(product_id, image, image_seq_num, colour_tags)
       post '/auth/add-product-image.json', :body => {
         :product_id => product_id, 
         :imagefile => File.new(image, 'rb'),
-        :image_seq_num => image_seq_num
+        :image_seq_num => image_seq_num,
+        :colour_tags => colour_tags
       }
     end
 
