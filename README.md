@@ -113,7 +113,7 @@ The spaaza client provides convenience wrappers for the spaaza API method endpoi
 + get_image_thumbnail(image)
 + mark_image_primary(image_seq_num, product_id)
 + delete_product_image(image_id, product_id)
-+ add_product_image(product_id, image, image_seq_num)
++ add_product_image(product_id, image, image_seq_num, colour_tags)
 + delete_shop_image(business_id, image)
 + add_shop_image(business_id, image)
 + get_chain(chain_id)
