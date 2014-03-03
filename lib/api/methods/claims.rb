@@ -15,9 +15,16 @@ module SpaazaApi
       }
     end
 
+    def get_user_vouchers()
+      require_protected_path
+      get "#{protected_path}/get-user-vouchers.json"
+    end
+
+    # 20140303 FIXME To be deprecated
     def get_var_price_vouchers_user()
       require_protected_path
-      get "#{protected_path}/get-var-price-vouchers-user.json"
+      get "#{protected_path}/get-user-vouchers.json"
     end
+
   end
 end
