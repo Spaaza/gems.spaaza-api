@@ -55,6 +55,13 @@ module SpaazaApi
       }
     end
 
+    def get_card(ssl_images=nil)
+      require_protected_path
+      get "#{protected_path}/get-user-entity-card.json", :query => {
+        :ssl_images => ssl_images
+      }
+    end
+
     def add_card(user_id, business_id=nil, chain_id=nil)
       require_protected_path
       post "#{protected_path}/add-entity-card-user.json", :body => {
