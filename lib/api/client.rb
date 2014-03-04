@@ -6,7 +6,6 @@ module SpaazaApi
     include SpaazaApi::Analytics
     include SpaazaApi::Categories
     include SpaazaApi::Chains
-    include SpaazaApi::Claims
     include SpaazaApi::Facebook
     include SpaazaApi::Images
     include SpaazaApi::Inventory

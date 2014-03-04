@@ -112,5 +112,39 @@ module SpaazaApi
         :claim_id => claim_id
       }
     end
+
+    def get_user_vouchers()
+      require_protected_path
+      get "#{protected_path}/get-user-vouchers.json"
+    end
+
+    def claim_voucher(voucher_key)
+      require_protected_path
+      post "#{protected_path}/claim-voucher.json", :body => {
+        :voucher_key => voucher_key
+      }
+    end
+
+    def delete_voucher(voucher_key)
+      require_protected_path
+      delete "#{protected_path}/delete-voucher.json", :body => {
+        :voucher_key => voucher_key
+      }
+    end
+
+    def get_var_price_claim(claim_code)
+      require_protected_path
+      get "#{protected_path}/get-var-price-claim.json", :query => {
+        :claim_code => claim_code,
+        :claim_view_type => 'retailer'
+      }
+    end
+
+    # 20140303 FIXME To be deprecated
+    def get_var_price_vouchers_user()
+      require_protected_path
+      get "#{protected_path}/get-user-vouchers.json"
+    end
+
   end
 end
