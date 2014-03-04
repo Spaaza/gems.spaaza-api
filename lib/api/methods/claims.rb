@@ -7,6 +7,13 @@ module SpaazaApi
       }
     end
 
+    def claim_voucher(claim_code)
+      require_protected_path
+      put "#{protected_path}/claim-voucher.json", :body => {
+        :voucher_key => claim_code
+      }
+    end
+
     def get_var_price_claim(claim_code)
       require_protected_path
       get "#{protected_path}/get-var-price-claim.json", :query => {
