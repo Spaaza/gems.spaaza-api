@@ -9,12 +9,12 @@ module SpaazaApi
       }
     end
 
-    def get_price(product_id, claim_key=nil, inventory_barcode=nil, entity=nil)
+    def get_price(product_id, voucher_key=nil, inventory_barcode=nil, entity=nil)
       require_protected_path
       if inventory_barcode.blank?
         query = {:product_id => product_id, :claim_key => claim_key}
       else
-        query = {:inventory_barcode => inventory_barcode, :claim_key => claim_key}
+        query = {:inventory_barcode => inventory_barcode, :voucher_key => voucher_key}
         query[(entity[:type]+"_id").to_sym] = entity[:id]
       end
       get "#{protected_path}/get-var-price-user.json", :query => query
